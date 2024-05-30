@@ -3,4 +3,4 @@
 //
 
 // pub mod simple;
-pub mod api;
+pub mod vips_api;

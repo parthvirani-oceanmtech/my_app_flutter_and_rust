@@ -3,7 +3,7 @@
 
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
-import 'api/api.dart';
+import 'api/vips_api.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'frb_generated.io.dart' if (dart.library.html) 'frb_generated.web.dart';
@@ -36,28 +36,24 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   static void dispose() => instance.disposeImpl();
 
   @override
-  ApiImplConstructor<RustLibApiImpl, RustLibWire> get apiImplConstructor =>
-      RustLibApiImpl.new;
+  ApiImplConstructor<RustLibApiImpl, RustLibWire> get apiImplConstructor => RustLibApiImpl.new;
 
   @override
-  WireConstructor<RustLibWire> get wireConstructor =>
-      RustLibWire.fromExternalLibrary;
+  WireConstructor<RustLibWire> get wireConstructor => RustLibWire.fromExternalLibrary;
 
   @override
   Future<void> executeRustInitializers() async {}
 
   @override
-  ExternalLibraryLoaderConfig get defaultExternalLibraryLoaderConfig =>
-      kDefaultExternalLibraryLoaderConfig;
+  ExternalLibraryLoaderConfig get defaultExternalLibraryLoaderConfig => kDefaultExternalLibraryLoaderConfig;
 
   @override
   String get codegenVersion => '2.0.0-dev.36';
 
   @override
-  int get rustContentHash => -1351149570;
+  int get rustContentHash => 1840973422;
 
-  static const kDefaultExternalLibraryLoaderConfig =
-      ExternalLibraryLoaderConfig(
+  static const kDefaultExternalLibraryLoaderConfig = ExternalLibraryLoaderConfig(
     stem: 'rust_lib_my_app',
     ioDirectory: 'rust/target/release/',
     webPrefix: 'pkg/',
@@ -65,33 +61,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
 }
 
 abstract class RustLibApi extends BaseApi {
-  Future<Uint8List> crateApiApiManipulateImage(
-      {required ManipulationInput input, dynamic hint});
-
-  Future<Uint8List> crateApiApiManipulationInputSave(
-      {required ManipulationInput that, dynamic hint});
-
-  Future<PhotonImage> crateApiApiPhotonFilterApply(
-      {required PhotonFilter that, required PhotonImage img1, dynamic hint});
-
-  Future<PhotonRgba> crateApiApiRgbaToPhotonRgba(
-      {required Rgba that, dynamic hint});
-
-  RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_PhotonImage;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_PhotonImage;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_PhotonImagePtr;
-
-  RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_PhotonRgba;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_PhotonRgba;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_PhotonRgbaPtr;
+  Future<Uint8List> crateApiVipsApiOverlayImageWithWatermark({required ImageOverlayInput input, dynamic hint});
 }
 
 class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
@@ -103,168 +73,33 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   });
 
   @override
-  Future<Uint8List> crateApiApiManipulateImage(
-      {required ManipulationInput input, dynamic hint}) {
+  Future<Uint8List> crateApiVipsApiOverlayImageWithWatermark({required ImageOverlayInput input, dynamic hint}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_manipulation_input(input, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 1, port: port_);
+        sse_encode_box_autoadd_image_overlay_input(input, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_list_prim_u_8_strict,
         decodeErrorData: sse_decode_AnyhowException,
       ),
-      constMeta: kCrateApiApiManipulateImageConstMeta,
+      constMeta: kCrateApiVipsApiOverlayImageWithWatermarkConstMeta,
       argValues: [input],
       apiImpl: this,
       hint: hint,
     ));
   }
 
-  TaskConstMeta get kCrateApiApiManipulateImageConstMeta => const TaskConstMeta(
-        debugName: "manipulate_image",
+  TaskConstMeta get kCrateApiVipsApiOverlayImageWithWatermarkConstMeta => const TaskConstMeta(
+        debugName: "overlay_image_with_watermark",
         argNames: ["input"],
       );
-
-  @override
-  Future<Uint8List> crateApiApiManipulationInputSave(
-      {required ManipulationInput that, dynamic hint}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_manipulation_input(that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 2, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_list_prim_u_8_strict,
-        decodeErrorData: sse_decode_AnyhowException,
-      ),
-      constMeta: kCrateApiApiManipulationInputSaveConstMeta,
-      argValues: [that],
-      apiImpl: this,
-      hint: hint,
-    ));
-  }
-
-  TaskConstMeta get kCrateApiApiManipulationInputSaveConstMeta =>
-      const TaskConstMeta(
-        debugName: "manipulation_input_save",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<PhotonImage> crateApiApiPhotonFilterApply(
-      {required PhotonFilter that, required PhotonImage img1, dynamic hint}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_photon_filter(that, serializer);
-        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage(
-            img1, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 3, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage,
-        decodeErrorData: null,
-      ),
-      constMeta: kCrateApiApiPhotonFilterApplyConstMeta,
-      argValues: [that, img1],
-      apiImpl: this,
-      hint: hint,
-    ));
-  }
-
-  TaskConstMeta get kCrateApiApiPhotonFilterApplyConstMeta =>
-      const TaskConstMeta(
-        debugName: "photon_filter_apply",
-        argNames: ["that", "img1"],
-      );
-
-  @override
-  Future<PhotonRgba> crateApiApiRgbaToPhotonRgba(
-      {required Rgba that, dynamic hint}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_rgba(that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 4, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonRgba,
-        decodeErrorData: null,
-      ),
-      constMeta: kCrateApiApiRgbaToPhotonRgbaConstMeta,
-      argValues: [that],
-      apiImpl: this,
-      hint: hint,
-    ));
-  }
-
-  TaskConstMeta get kCrateApiApiRgbaToPhotonRgbaConstMeta =>
-      const TaskConstMeta(
-        debugName: "rgba_to_photon_rgba",
-        argNames: ["that"],
-      );
-
-  RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_PhotonImage => wire
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_PhotonImage => wire
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage;
-
-  RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_PhotonRgba => wire
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonRgba;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_PhotonRgba => wire
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonRgba;
 
   @protected
   AnyhowException dco_decode_AnyhowException(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return AnyhowException(raw as String);
-  }
-
-  @protected
-  PhotonImage
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return PhotonImage.dcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  PhotonRgba
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonRgba(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return PhotonRgba.dcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  PhotonImage
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return PhotonImage.dcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  PhotonRgba
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonRgba(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return PhotonRgba.dcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -274,33 +109,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  ManipulationInput dco_decode_box_autoadd_manipulation_input(dynamic raw) {
+  ImageOverlayInput dco_decode_box_autoadd_image_overlay_input(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_manipulation_input(raw);
-  }
-
-  @protected
-  PhotonFilter dco_decode_box_autoadd_photon_filter(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_photon_filter(raw);
-  }
-
-  @protected
-  Rgba dco_decode_box_autoadd_rgba(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_rgba(raw);
-  }
-
-  @protected
-  Rgba dco_decode_box_rgba(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_rgba(raw);
-  }
-
-  @protected
-  double dco_decode_f_64(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as double;
+    return dco_decode_image_overlay_input(raw);
   }
 
   @protected
@@ -310,15 +121,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  PlatformInt64 dco_decode_i_64(dynamic raw) {
+  ImageOverlayInput dco_decode_image_overlay_input(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dcoDecodeI64(raw);
-  }
-
-  @protected
-  List<PhotonFilter> dco_decode_list_photon_filter(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return (raw as List<dynamic>).map(dco_decode_photon_filter).toList();
+    final arr = raw as List<dynamic>;
+    if (arr.length != 6) throw Exception('unexpected arr length: expect 6 but see ${arr.length}');
+    return ImageOverlayInput(
+      inputImage: dco_decode_list_prim_u_8_strict(arr[0]),
+      overlayImage: dco_decode_list_prim_u_8_strict(arr[1]),
+      overlayWidth: dco_decode_i_32(arr[2]),
+      overlayHeight: dco_decode_i_32(arr[3]),
+      x: dco_decode_i_32(arr[4]),
+      y: dco_decode_i_32(arr[5]),
+    );
   }
 
   @protected
@@ -328,73 +142,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  ManipulationInput dco_decode_manipulation_input(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 4)
-      throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
-    return ManipulationInput(
-      originalBytes: dco_decode_list_prim_u_8_strict(arr[0]),
-      filters: dco_decode_list_photon_filter(arr[1]),
-      outputFormat: dco_decode_output_format(arr[2]),
-      quality: dco_decode_u_8(arr[3]),
-    );
-  }
-
-  @protected
-  OutputFormat dco_decode_output_format(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return OutputFormat.values[raw as int];
-  }
-
-  @protected
-  PhotonFilter dco_decode_photon_filter(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 8)
-      throw Exception('unexpected arr length: expect 8 but see ${arr.length}');
-    return PhotonFilter(
-      name: dco_decode_String(arr[0]),
-      val1: dco_decode_i_64(arr[1]),
-      val2: dco_decode_i_64(arr[2]),
-      val3: dco_decode_i_64(arr[3]),
-      val4: dco_decode_i_64(arr[4]),
-      image2Bytes: dco_decode_list_prim_u_8_strict(arr[5]),
-      rgba: dco_decode_box_rgba(arr[6]),
-      val1F: dco_decode_f_64(arr[7]),
-    );
-  }
-
-  @protected
-  Rgba dco_decode_rgba(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 4)
-      throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
-    return Rgba(
-      r: dco_decode_u_8(arr[0]),
-      g: dco_decode_u_8(arr[1]),
-      b: dco_decode_u_8(arr[2]),
-      a: dco_decode_u_8(arr[3]),
-    );
-  }
-
-  @protected
   int dco_decode_u_8(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as int;
-  }
-
-  @protected
-  void dco_decode_unit(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return;
-  }
-
-  @protected
-  BigInt dco_decode_usize(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dcoDecodeU64(raw);
   }
 
   @protected
@@ -405,42 +155,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  PhotonImage
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return PhotonImage.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  PhotonRgba
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonRgba(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return PhotonRgba.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  PhotonImage
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return PhotonImage.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  PhotonRgba
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonRgba(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return PhotonRgba.sseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
   String sse_decode_String(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_list_prim_u_8_strict(deserializer);
@@ -448,35 +162,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  ManipulationInput sse_decode_box_autoadd_manipulation_input(
-      SseDeserializer deserializer) {
+  ImageOverlayInput sse_decode_box_autoadd_image_overlay_input(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_manipulation_input(deserializer));
-  }
-
-  @protected
-  PhotonFilter sse_decode_box_autoadd_photon_filter(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_photon_filter(deserializer));
-  }
-
-  @protected
-  Rgba sse_decode_box_autoadd_rgba(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_rgba(deserializer));
-  }
-
-  @protected
-  Rgba sse_decode_box_rgba(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_rgba(deserializer));
-  }
-
-  @protected
-  double sse_decode_f_64(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getFloat64();
+    return (sse_decode_image_overlay_input(deserializer));
   }
 
   @protected
@@ -486,22 +174,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  PlatformInt64 sse_decode_i_64(SseDeserializer deserializer) {
+  ImageOverlayInput sse_decode_image_overlay_input(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getPlatformInt64();
-  }
-
-  @protected
-  List<PhotonFilter> sse_decode_list_photon_filter(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var len_ = sse_decode_i_32(deserializer);
-    var ans_ = <PhotonFilter>[];
-    for (var idx_ = 0; idx_ < len_; ++idx_) {
-      ans_.add(sse_decode_photon_filter(deserializer));
-    }
-    return ans_;
+    var var_inputImage = sse_decode_list_prim_u_8_strict(deserializer);
+    var var_overlayImage = sse_decode_list_prim_u_8_strict(deserializer);
+    var var_overlayWidth = sse_decode_i_32(deserializer);
+    var var_overlayHeight = sse_decode_i_32(deserializer);
+    var var_x = sse_decode_i_32(deserializer);
+    var var_y = sse_decode_i_32(deserializer);
+    return ImageOverlayInput(
+        inputImage: var_inputImage,
+        overlayImage: var_overlayImage,
+        overlayWidth: var_overlayWidth,
+        overlayHeight: var_overlayHeight,
+        x: var_x,
+        y: var_y);
   }
 
   @protected
@@ -512,74 +199,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  ManipulationInput sse_decode_manipulation_input(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_originalBytes = sse_decode_list_prim_u_8_strict(deserializer);
-    var var_filters = sse_decode_list_photon_filter(deserializer);
-    var var_outputFormat = sse_decode_output_format(deserializer);
-    var var_quality = sse_decode_u_8(deserializer);
-    return ManipulationInput(
-        originalBytes: var_originalBytes,
-        filters: var_filters,
-        outputFormat: var_outputFormat,
-        quality: var_quality);
-  }
-
-  @protected
-  OutputFormat sse_decode_output_format(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var inner = sse_decode_i_32(deserializer);
-    return OutputFormat.values[inner];
-  }
-
-  @protected
-  PhotonFilter sse_decode_photon_filter(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_name = sse_decode_String(deserializer);
-    var var_val1 = sse_decode_i_64(deserializer);
-    var var_val2 = sse_decode_i_64(deserializer);
-    var var_val3 = sse_decode_i_64(deserializer);
-    var var_val4 = sse_decode_i_64(deserializer);
-    var var_image2Bytes = sse_decode_list_prim_u_8_strict(deserializer);
-    var var_rgba = sse_decode_box_rgba(deserializer);
-    var var_val1F = sse_decode_f_64(deserializer);
-    return PhotonFilter(
-        name: var_name,
-        val1: var_val1,
-        val2: var_val2,
-        val3: var_val3,
-        val4: var_val4,
-        image2Bytes: var_image2Bytes,
-        rgba: var_rgba,
-        val1F: var_val1F);
-  }
-
-  @protected
-  Rgba sse_decode_rgba(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_r = sse_decode_u_8(deserializer);
-    var var_g = sse_decode_u_8(deserializer);
-    var var_b = sse_decode_u_8(deserializer);
-    var var_a = sse_decode_u_8(deserializer);
-    return Rgba(r: var_r, g: var_g, b: var_b, a: var_a);
-  }
-
-  @protected
   int sse_decode_u_8(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getUint8();
-  }
-
-  @protected
-  void sse_decode_unit(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  BigInt sse_decode_usize(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getBigUint64();
   }
 
   @protected
@@ -589,42 +211,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_AnyhowException(
-      AnyhowException self, SseSerializer serializer) {
+  void sse_encode_AnyhowException(AnyhowException self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.message, serializer);
-  }
-
-  @protected
-  void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage(
-          PhotonImage self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.sseEncode(move: true), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonRgba(
-          PhotonRgba self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.sseEncode(move: true), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonImage(
-          PhotonImage self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.sseEncode(move: null), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPhotonRgba(
-          PhotonRgba self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.sseEncode(move: null), serializer);
   }
 
   @protected
@@ -634,35 +223,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_box_autoadd_manipulation_input(
-      ManipulationInput self, SseSerializer serializer) {
+  void sse_encode_box_autoadd_image_overlay_input(ImageOverlayInput self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_manipulation_input(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_photon_filter(
-      PhotonFilter self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_photon_filter(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_rgba(Rgba self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_rgba(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_rgba(Rgba self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_rgba(self, serializer);
-  }
-
-  @protected
-  void sse_encode_f_64(double self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putFloat64(self);
+    sse_encode_image_overlay_input(self, serializer);
   }
 
   @protected
@@ -672,82 +235,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer) {
+  void sse_encode_image_overlay_input(ImageOverlayInput self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putPlatformInt64(self);
+    sse_encode_list_prim_u_8_strict(self.inputImage, serializer);
+    sse_encode_list_prim_u_8_strict(self.overlayImage, serializer);
+    sse_encode_i_32(self.overlayWidth, serializer);
+    sse_encode_i_32(self.overlayHeight, serializer);
+    sse_encode_i_32(self.x, serializer);
+    sse_encode_i_32(self.y, serializer);
   }
 
   @protected
-  void sse_encode_list_photon_filter(
-      List<PhotonFilter> self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.length, serializer);
-    for (final item in self) {
-      sse_encode_photon_filter(item, serializer);
-    }
-  }
-
-  @protected
-  void sse_encode_list_prim_u_8_strict(
-      Uint8List self, SseSerializer serializer) {
+  void sse_encode_list_prim_u_8_strict(Uint8List self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.length, serializer);
     serializer.buffer.putUint8List(self);
   }
 
   @protected
-  void sse_encode_manipulation_input(
-      ManipulationInput self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_list_prim_u_8_strict(self.originalBytes, serializer);
-    sse_encode_list_photon_filter(self.filters, serializer);
-    sse_encode_output_format(self.outputFormat, serializer);
-    sse_encode_u_8(self.quality, serializer);
-  }
-
-  @protected
-  void sse_encode_output_format(OutputFormat self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.index, serializer);
-  }
-
-  @protected
-  void sse_encode_photon_filter(PhotonFilter self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_String(self.name, serializer);
-    sse_encode_i_64(self.val1, serializer);
-    sse_encode_i_64(self.val2, serializer);
-    sse_encode_i_64(self.val3, serializer);
-    sse_encode_i_64(self.val4, serializer);
-    sse_encode_list_prim_u_8_strict(self.image2Bytes, serializer);
-    sse_encode_box_rgba(self.rgba, serializer);
-    sse_encode_f_64(self.val1F, serializer);
-  }
-
-  @protected
-  void sse_encode_rgba(Rgba self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_u_8(self.r, serializer);
-    sse_encode_u_8(self.g, serializer);
-    sse_encode_u_8(self.b, serializer);
-    sse_encode_u_8(self.a, serializer);
-  }
-
-  @protected
   void sse_encode_u_8(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putUint8(self);
-  }
-
-  @protected
-  void sse_encode_unit(void self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-  }
-
-  @protected
-  void sse_encode_usize(BigInt self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putBigUint64(self);
   }
 
   @protected
