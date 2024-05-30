@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
         body: Builder(
           builder: (context) {
             return ListView(
-              children: [],
+              children: const [],
             );
           },
         ),
