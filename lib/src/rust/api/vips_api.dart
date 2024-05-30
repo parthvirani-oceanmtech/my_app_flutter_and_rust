@@ -6,8 +6,10 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<Uint8List> overlayImageWithWatermark({required ImageOverlayInput input, dynamic hint}) =>
-    RustLib.instance.api.crateApiVipsApiOverlayImageWithWatermark(input: input, hint: hint);
+Future<Uint8List> overlayImageWithWatermark(
+        {required ImageOverlayInput input, dynamic hint}) =>
+    RustLib.instance.api
+        .crateApiVipsApiOverlayImageWithWatermark(input: input, hint: hint);
 
 class ImageOverlayInput {
   final Uint8List inputImage;

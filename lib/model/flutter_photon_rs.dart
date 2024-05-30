@@ -1,12 +1,8 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:my_app/vips_rs.dart';
 import 'package:my_app/src/rust/api/vips_api.dart';
-
-const base = 'flutter_photon_rs';
-final path = Platform.isWindows ? '$base.dll' : 'lib$base.so';
 
 class LibVips {
   static Future<Uint8List> process({required Uint8List bytes, int quality = 100}) async {

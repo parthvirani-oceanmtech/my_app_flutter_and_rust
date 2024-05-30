@@ -36,16 +36,19 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   static void dispose() => instance.disposeImpl();
 
   @override
-  ApiImplConstructor<RustLibApiImpl, RustLibWire> get apiImplConstructor => RustLibApiImpl.new;
+  ApiImplConstructor<RustLibApiImpl, RustLibWire> get apiImplConstructor =>
+      RustLibApiImpl.new;
 
   @override
-  WireConstructor<RustLibWire> get wireConstructor => RustLibWire.fromExternalLibrary;
+  WireConstructor<RustLibWire> get wireConstructor =>
+      RustLibWire.fromExternalLibrary;
 
   @override
   Future<void> executeRustInitializers() async {}
 
   @override
-  ExternalLibraryLoaderConfig get defaultExternalLibraryLoaderConfig => kDefaultExternalLibraryLoaderConfig;
+  ExternalLibraryLoaderConfig get defaultExternalLibraryLoaderConfig =>
+      kDefaultExternalLibraryLoaderConfig;
 
   @override
   String get codegenVersion => '2.0.0-dev.36';
@@ -53,7 +56,8 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   @override
   int get rustContentHash => 1840973422;
 
-  static const kDefaultExternalLibraryLoaderConfig = ExternalLibraryLoaderConfig(
+  static const kDefaultExternalLibraryLoaderConfig =
+      ExternalLibraryLoaderConfig(
     stem: 'rust_lib_my_app',
     ioDirectory: 'rust/target/release/',
     webPrefix: 'pkg/',
@@ -61,7 +65,8 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
 }
 
 abstract class RustLibApi extends BaseApi {
-  Future<Uint8List> crateApiVipsApiOverlayImageWithWatermark({required ImageOverlayInput input, dynamic hint});
+  Future<Uint8List> crateApiVipsApiOverlayImageWithWatermark(
+      {required ImageOverlayInput input, dynamic hint});
 }
 
 class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
@@ -73,12 +78,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   });
 
   @override
-  Future<Uint8List> crateApiVipsApiOverlayImageWithWatermark({required ImageOverlayInput input, dynamic hint}) {
+  Future<Uint8List> crateApiVipsApiOverlayImageWithWatermark(
+      {required ImageOverlayInput input, dynamic hint}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_box_autoadd_image_overlay_input(input, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1, port: port_);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 1, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_list_prim_u_8_strict,
@@ -91,7 +98,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     ));
   }
 
-  TaskConstMeta get kCrateApiVipsApiOverlayImageWithWatermarkConstMeta => const TaskConstMeta(
+  TaskConstMeta get kCrateApiVipsApiOverlayImageWithWatermarkConstMeta =>
+      const TaskConstMeta(
         debugName: "overlay_image_with_watermark",
         argNames: ["input"],
       );
@@ -124,7 +132,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   ImageOverlayInput dco_decode_image_overlay_input(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
-    if (arr.length != 6) throw Exception('unexpected arr length: expect 6 but see ${arr.length}');
+    if (arr.length != 6)
+      throw Exception('unexpected arr length: expect 6 but see ${arr.length}');
     return ImageOverlayInput(
       inputImage: dco_decode_list_prim_u_8_strict(arr[0]),
       overlayImage: dco_decode_list_prim_u_8_strict(arr[1]),
@@ -162,7 +171,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  ImageOverlayInput sse_decode_box_autoadd_image_overlay_input(SseDeserializer deserializer) {
+  ImageOverlayInput sse_decode_box_autoadd_image_overlay_input(
+      SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_image_overlay_input(deserializer));
   }
@@ -174,7 +184,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  ImageOverlayInput sse_decode_image_overlay_input(SseDeserializer deserializer) {
+  ImageOverlayInput sse_decode_image_overlay_input(
+      SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_inputImage = sse_decode_list_prim_u_8_strict(deserializer);
     var var_overlayImage = sse_decode_list_prim_u_8_strict(deserializer);
@@ -211,7 +222,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_AnyhowException(AnyhowException self, SseSerializer serializer) {
+  void sse_encode_AnyhowException(
+      AnyhowException self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.message, serializer);
   }
@@ -223,7 +235,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_box_autoadd_image_overlay_input(ImageOverlayInput self, SseSerializer serializer) {
+  void sse_encode_box_autoadd_image_overlay_input(
+      ImageOverlayInput self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_image_overlay_input(self, serializer);
   }
@@ -235,7 +248,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_image_overlay_input(ImageOverlayInput self, SseSerializer serializer) {
+  void sse_encode_image_overlay_input(
+      ImageOverlayInput self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_list_prim_u_8_strict(self.inputImage, serializer);
     sse_encode_list_prim_u_8_strict(self.overlayImage, serializer);
@@ -246,7 +260,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_list_prim_u_8_strict(Uint8List self, SseSerializer serializer) {
+  void sse_encode_list_prim_u_8_strict(
+      Uint8List self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.length, serializer);
     serializer.buffer.putUint8List(self);
