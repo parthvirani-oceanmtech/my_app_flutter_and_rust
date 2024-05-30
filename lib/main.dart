@@ -140,38 +140,23 @@ const listedConvolutionFilters = [
 ];
 
 Future<List<Filter>> listedMultipleFilters() async {
-  final watermark = await rootBundle.load('images/watermark.png');
-  final blendImage = await rootBundle.load('images/blend.jpg');
+  final watermark = await rootBundle.load('assets/images/watermark.png');
+  final blendImage = await rootBundle.load('assets/images/blend.jpg');
+
   return [
     Multiple.watermarkFromBytes(
       x: 20,
       y: 20,
-      bytes: Uint8List.view(
-        watermark.buffer,
-        watermark.offsetInBytes,
-        watermark.lengthInBytes,
-      ),
+      bytes: Uint8List.view(watermark.buffer, watermark.offsetInBytes, watermark.lengthInBytes),
     ),
     const Multiple.applyGradient(),
     Multiple.replaceBackground(
-      bytes: Uint8List.view(
-        blendImage.buffer,
-        blendImage.offsetInBytes,
-        blendImage.lengthInBytes,
-      ),
-      rgb: const Rgb(
-        r: 1,
-        g: 255,
-        b: 19,
-      ),
+      bytes: Uint8List.view(blendImage.buffer, blendImage.offsetInBytes, blendImage.lengthInBytes),
+      rgb: const Rgb(r: 1, g: 255, b: 19),
     ),
     ...BlendMode.values.map((e) {
       return Multiple.blend(
-        bytes: Uint8List.view(
-          blendImage.buffer,
-          blendImage.offsetInBytes,
-          blendImage.lengthInBytes,
-        ),
+        bytes: Uint8List.view(blendImage.buffer, blendImage.offsetInBytes, blendImage.lengthInBytes),
         blendMode: e,
       );
     }),
