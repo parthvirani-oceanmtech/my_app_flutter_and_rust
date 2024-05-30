@@ -17,8 +17,7 @@ class Photon {
   }) async {
     // assert((thresholdAmount <= 255 && thresholdAmount >= 0) || !threshold, "threshold should be between 0 and 255.");
     assert(
-        outputFormat != OutputFormat.jpeg || (quality >= 0 && quality <= 100),
-        "quality should be between 0 and 100");
+        outputFormat != OutputFormat.jpeg || (quality >= 0 && quality <= 100), "quality should be between 0 and 100");
 
     log(filters.toString());
     Stopwatch? stopwatch;
@@ -54,7 +53,7 @@ Future<Uint8List> manipulateImageFun(ManipulationInput i) async {
   if (kDebugMode) {
     stopwatch = Stopwatch()..start();
   }
-  final value = await manipulateImage(a: i);
+  final value = await manipulateImage(input: i);
   if (kDebugMode && stopwatch != null) {
     log("flutter_photon_rs 2: ${stopwatch.elapsed.inMilliseconds}ms");
   }

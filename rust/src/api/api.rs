@@ -372,7 +372,7 @@ pub enum OutputFormat {
 }
 
 impl self::ManipulationInput {
-    pub fn save(&self) -> Result<T<Vec<u8>>> {
+    pub fn save(&self) -> Result<Vec<u8>> {
         let mut img =
             open_image_from_bytes(&(self.original_bytes)).expect("Error getting image from bytes");
 
@@ -433,11 +433,11 @@ impl self::ManipulationInput {
             .expect("error writing buff with format");
         }
 
-        Ok(T(bytes))
+        Ok(bytes)
     }
 }
 
-pub fn manipulate_image(a: ManipulationInput) -> Result<T<Vec<u8>>> {
+pub fn manipulate_image(a: ManipulationInput) -> Result<Vec<u8>> {
     a.save()
 }
 

@@ -6,84 +6,36 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<TVecU8> manipulateImage({required ManipulationInput a, dynamic hint}) =>
-    RustLib.instance.api.crateApiApiManipulateImage(a: a, hint: hint);
+Future<Uint8List> manipulateImage({required ManipulationInput input, dynamic hint}) =>
+    RustLib.instance.api.crateApiApiManipulateImage(input: input, hint: hint);
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PhotonImage>>
 @sealed
 class PhotonImage extends RustOpaque {
-  PhotonImage.dcoDecode(List<dynamic> wire)
-      : super.dcoDecode(wire, _kStaticData);
+  PhotonImage.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
 
   PhotonImage.sseDecode(BigInt ptr, int externalSizeOnNative)
       : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
 
   static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_PhotonImage,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_PhotonImage,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_PhotonImagePtr,
+    rustArcIncrementStrongCount: RustLib.instance.api.rust_arc_increment_strong_count_PhotonImage,
+    rustArcDecrementStrongCount: RustLib.instance.api.rust_arc_decrement_strong_count_PhotonImage,
+    rustArcDecrementStrongCountPtr: RustLib.instance.api.rust_arc_decrement_strong_count_PhotonImagePtr,
   );
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PhotonRgba>>
 @sealed
 class PhotonRgba extends RustOpaque {
-  PhotonRgba.dcoDecode(List<dynamic> wire)
-      : super.dcoDecode(wire, _kStaticData);
+  PhotonRgba.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
 
-  PhotonRgba.sseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
+  PhotonRgba.sseDecode(BigInt ptr, int externalSizeOnNative) : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
 
   static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_PhotonRgba,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_PhotonRgba,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_PhotonRgbaPtr,
+    rustArcIncrementStrongCount: RustLib.instance.api.rust_arc_increment_strong_count_PhotonRgba,
+    rustArcDecrementStrongCount: RustLib.instance.api.rust_arc_decrement_strong_count_PhotonRgba,
+    rustArcDecrementStrongCountPtr: RustLib.instance.api.rust_arc_decrement_strong_count_PhotonRgbaPtr,
   );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<T < Vec < u8 > >>>
-@sealed
-class TVecU8 extends RustOpaque {
-  TVecU8.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
-
-  TVecU8.sseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_TVecU8,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_TVecU8,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_TVecU8Ptr,
-  );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<self>>
-@sealed
-class Self extends RustOpaque {
-  Self.dcoDecode(List<dynamic> wire) : super.dcoDecode(wire, _kStaticData);
-
-  Self.sseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.sseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_Self,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_Self,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_SelfPtr,
-  );
-
-  Future<TVecU8> save({dynamic hint}) =>
-      RustLib.instance.api.crateApiApiSelfSave(that: this, hint: hint);
 }
 
 class ManipulationInput {
@@ -99,12 +51,11 @@ class ManipulationInput {
     required this.quality,
   });
 
+  Future<Uint8List> save({dynamic hint}) =>
+      RustLib.instance.api.crateApiApiManipulationInputSave(that: this, hint: hint);
+
   @override
-  int get hashCode =>
-      originalBytes.hashCode ^
-      filters.hashCode ^
-      outputFormat.hashCode ^
-      quality.hashCode;
+  int get hashCode => originalBytes.hashCode ^ filters.hashCode ^ outputFormat.hashCode ^ quality.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -120,7 +71,9 @@ class ManipulationInput {
 enum OutputFormat {
   png,
   jpeg,
-  gif,
+  tiff,
+  webp,
+  bmp,
   ;
 }
 
@@ -146,8 +99,7 @@ class PhotonFilter {
   });
 
   Future<PhotonImage> apply({required PhotonImage img1, dynamic hint}) =>
-      RustLib.instance.api
-          .crateApiApiPhotonFilterApply(that: this, img1: img1, hint: hint);
+      RustLib.instance.api.crateApiApiPhotonFilterApply(that: this, img1: img1, hint: hint);
 
   @override
   int get hashCode =>
@@ -197,10 +149,5 @@ class Rgba {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Rgba &&
-          runtimeType == other.runtimeType &&
-          r == other.r &&
-          g == other.g &&
-          b == other.b &&
-          a == other.a;
+      other is Rgba && runtimeType == other.runtimeType && r == other.r && g == other.g && b == other.b && a == other.a;
 }

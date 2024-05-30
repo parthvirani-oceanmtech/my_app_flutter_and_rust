@@ -12,6 +12,7 @@ anyhow = { version = "1.0.56", features = ["backtrace"] }
 photon-rs = { version = "^0.3.1", features = ["default", ] }
 image = "0.24.1"
 img-parts = "0.2.3"
+libvips = "1.7.0"
 
 [profile.release]
 strip = true
