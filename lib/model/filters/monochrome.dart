@@ -26,9 +26,11 @@ class Monochrome with _$Monochrome implements Filter {
   @Implements<Filter>()
   const factory Monochrome.grayscale() = _MonochromeGrayscale;
   @Implements<Filter>()
-  const factory Monochrome.grayscaleHumanCorrection() = _MonochromeGrayscaleHumanCorrection;
+  const factory Monochrome.grayscaleHumanCorrection() =
+      _MonochromeGrayscaleHumanCorrection;
   @Implements<Filter>()
-  const factory Monochrome.grayscaleShades(int value) = _MonochromeGrayscaleShades;
+  const factory Monochrome.grayscaleShades(int value) =
+      _MonochromeGrayscaleShades;
   @Implements<Filter>()
   const factory Monochrome.threshold(int value) = _MonochromeThreshold;
 
@@ -70,7 +72,10 @@ class Monochrome with _$Monochrome implements Filter {
 
   @override
   String get fullName {
-    return name.split('_').map((e) => "${e[0].toUpperCase()}${e.substring(1)}").join(' ');
+    return name
+        .split('_')
+        .map((e) => "${e[0].toUpperCase()}${e.substring(1)}")
+        .join(' ');
   }
 
   @override

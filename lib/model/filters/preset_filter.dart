@@ -69,7 +69,10 @@ class PresetFilter with _$PresetFilter implements Filter {
 
   @override
   String get fullName {
-    return name.split('_').map((e) => "${e[0].toUpperCase()}${e.substring(1)}").join(' ');
+    return name
+        .split('_')
+        .map((e) => "${e[0].toUpperCase()}${e.substring(1)}")
+        .join(' ');
   }
 
   @override

@@ -17,7 +17,8 @@ class Photon {
   }) async {
     // assert((thresholdAmount <= 255 && thresholdAmount >= 0) || !threshold, "threshold should be between 0 and 255.");
     assert(
-        outputFormat != OutputFormat.jpeg || (quality >= 0 && quality <= 100), "quality should be between 0 and 100");
+        outputFormat != OutputFormat.jpeg || (quality >= 0 && quality <= 100),
+        "quality should be between 0 and 100");
 
     log(filters.toString());
     Stopwatch? stopwatch;

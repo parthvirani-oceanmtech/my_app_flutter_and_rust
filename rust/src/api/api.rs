@@ -3,7 +3,7 @@ extern crate photon_rs;
 use std::io::{Cursor, Write};
 
 use anyhow::Result;
-use flutter_rust_bridge::T;
+use flutter_rust_bridge::ZeroCopyBuffer;
 use image::ImageOutputFormat;
 use img_parts::{DynImage, ImageEXIF, ImageICC};
 use photon_rs::{

@@ -16,9 +16,11 @@ class Convolution with _$Convolution implements Filter {
   @Implements<Filter>()
   const factory Convolution.detect135DegLines() = ConvolutionDetect135DegLines;
   @Implements<Filter>()
-  const factory Convolution.detectVerticalLines() = ConvolutionDetectVerticalLines;
+  const factory Convolution.detectVerticalLines() =
+      ConvolutionDetectVerticalLines;
   @Implements<Filter>()
-  const factory Convolution.detectHorizontalLines() = ConvolutionDetectHorizontalLines;
+  const factory Convolution.detectHorizontalLines() =
+      ConvolutionDetectHorizontalLines;
   @Implements<Filter>()
   const factory Convolution.edgeDetection() = ConvolutionEdgeDetection;
   @Implements<Filter>()
@@ -68,7 +70,10 @@ class Convolution with _$Convolution implements Filter {
 
   @override
   String get fullName {
-    return name.split('_').map((e) => "${e[0].toUpperCase()}${e.substring(1)}").join(' ');
+    return name
+        .split('_')
+        .map((e) => "${e[0].toUpperCase()}${e.substring(1)}")
+        .join(' ');
   }
 
   @override

@@ -70,7 +70,10 @@ class Channel with _$Channel implements Filter {
       swapRGChannels: (value) => 'Swap R+G Channels',
       swapBGChannels: (value) => 'Swap B+G Channels',
       orElse: () {
-        return name.split('_').map((e) => "${e[0].toUpperCase()}${e.substring(1)}").join(' ');
+        return name
+            .split('_')
+            .map((e) => "${e[0].toUpperCase()}${e.substring(1)}")
+            .join(' ');
       },
     );
   }

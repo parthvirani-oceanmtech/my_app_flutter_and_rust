@@ -40,7 +40,8 @@ class FilterList extends StatelessWidget {
             return InkWell(
               onTap: () {
                 if (filters.value.contains(listedFilters[index])) {
-                  filters.value = {...filters.value}..remove(listedFilters[index]);
+                  filters.value = {...filters.value}
+                    ..remove(listedFilters[index]);
                 } else {
                   filters.value = {...filters.value, listedFilters[index]};
                 }

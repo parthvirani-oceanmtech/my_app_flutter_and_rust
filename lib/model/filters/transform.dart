@@ -72,7 +72,10 @@ class Transform with _$Transform implements Filter {
   String get fullName {
     return maybeMap(
       orElse: () {
-        return name.split('_').map((e) => "${e[0].toUpperCase()}${e.substring(1)}").join(' ');
+        return name
+            .split('_')
+            .map((e) => "${e[0].toUpperCase()}${e.substring(1)}")
+            .join(' ');
       },
       flipH: (_) => "Flip Horizontal",
       flipV: (_) => "Flip Vertical",

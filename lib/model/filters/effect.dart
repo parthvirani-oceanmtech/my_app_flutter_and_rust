@@ -6,7 +6,7 @@ import 'package:my_app/src/rust/api/api.dart';
 part 'effect.freezed.dart';
 
 @freezed
-class Effect with _$Effect implements  Filter {
+class Effect with _$Effect implements Filter {
   const Effect._();
 
   @Implements<Filter>()
@@ -82,7 +82,10 @@ class Effect with _$Effect implements  Filter {
   String get fullName {
     return maybeMap(
       orElse: () {
-        return name.split('_').map((e) => "${e[0].toUpperCase()}${e.substring(1)}").join(' ');
+        return name
+            .split('_')
+            .map((e) => "${e[0].toUpperCase()}${e.substring(1)}")
+            .join(' ');
       },
       offset: (value) {
         switch (value.channelIndex) {
@@ -93,7 +96,10 @@ class Effect with _$Effect implements  Filter {
           case 2:
             return "${name.split('_').map((e) => "${e[0].toUpperCase()}${e.substring(1)}").join(' ')} Blue";
           default:
-            return name.split('_').map((e) => "${e[0].toUpperCase()}${e.substring(1)}").join(' ');
+            return name
+                .split('_')
+                .map((e) => "${e[0].toUpperCase()}${e.substring(1)}")
+                .join(' ');
         }
       },
     );

@@ -52,7 +52,9 @@ class ImageMemoryWithLoading extends StatelessWidget {
     );
 
     final completer = Completer<ui.Image>();
-    imageWidget.image.resolve(const ImageConfiguration()).addListener(ImageStreamListener(
+    imageWidget.image
+        .resolve(const ImageConfiguration())
+        .addListener(ImageStreamListener(
       (image, synchronousCall) {
         completer.complete(image.image);
       },
