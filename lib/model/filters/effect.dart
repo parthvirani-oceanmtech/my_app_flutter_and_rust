@@ -6,7 +6,7 @@ import 'package:my_app/src/rust/api/api.dart';
 part 'effect.freezed.dart';
 
 @freezed
-class Effect with _$Effect, Filter {
+class Effect with _$Effect implements  Filter {
   const Effect._();
 
   @Implements<Filter>()

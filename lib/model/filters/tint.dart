@@ -6,7 +6,7 @@ import 'package:my_app/src/rust/api/api.dart';
 part 'tint.freezed.dart';
 
 @freezed
-class Tint with _$Tint, Filter {
+class Tint with _$Tint implements Filter {
   const Tint._();
 
   @Implements<Filter>()

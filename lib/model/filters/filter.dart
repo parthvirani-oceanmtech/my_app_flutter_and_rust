@@ -10,7 +10,7 @@ export './effect.dart';
 export './colour_space.dart';
 export './convolution.dart';
 
-mixin class Filter {
+abstract class Filter {
   String get fullName;
   String get name;
 

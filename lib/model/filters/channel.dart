@@ -7,7 +7,7 @@ import 'package:my_app/src/rust/api/api.dart';
 part 'channel.freezed.dart';
 
 @freezed
-class Channel with _$Channel, Filter {
+class Channel with _$Channel implements Filter {
   const Channel._();
 
   @Implements<Filter>()

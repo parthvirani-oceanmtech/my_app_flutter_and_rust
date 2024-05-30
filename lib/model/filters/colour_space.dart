@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:my_app/flutter_photon_rs.dart';
 import 'package:my_app/model/util.dart';
@@ -14,7 +16,7 @@ enum ColourSpaceMode {
 }
 
 @freezed
-class ColourSpace with _$ColourSpace, Filter {
+class ColourSpace with _$ColourSpace implements Filter {
   const ColourSpace._();
 
   @Implements<Filter>()

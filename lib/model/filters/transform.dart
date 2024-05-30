@@ -15,7 +15,7 @@ enum SamplingFilter {
 }
 
 @freezed
-class Transform with _$Transform, Filter {
+class Transform with _$Transform implements Filter {
   const Transform._();
 
   @Implements<Filter>()

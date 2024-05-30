@@ -8,7 +8,7 @@ import 'package:my_app/src/rust/api/api.dart';
 part 'monochrome.freezed.dart';
 
 @freezed
-class Monochrome with _$Monochrome, Filter {
+class Monochrome with _$Monochrome implements Filter {
   const Monochrome._();
 
   @Implements<Filter>()

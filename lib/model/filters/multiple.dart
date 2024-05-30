@@ -45,7 +45,7 @@ enum BlendMode {
 }
 
 @freezed
-class Multiple with _$Multiple, Filter {
+class Multiple with _$Multiple implements Filter {
   const Multiple._();
 
   @Implements<Filter>()

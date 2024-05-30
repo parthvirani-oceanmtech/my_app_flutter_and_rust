@@ -6,7 +6,7 @@ import 'package:my_app/src/rust/api/api.dart';
 part 'convolution.freezed.dart';
 
 @freezed
-class Convolution with _$Convolution, Filter {
+class Convolution with _$Convolution implements Filter {
   const Convolution._();
 
   @Implements<Filter>()

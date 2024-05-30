@@ -6,7 +6,7 @@ import 'package:my_app/src/rust/api/api.dart';
 part 'preset_filter.freezed.dart';
 
 @freezed
-class PresetFilter with _$PresetFilter, Filter {
+class PresetFilter with _$PresetFilter implements Filter {
   const PresetFilter._();
 
   @Implements<Filter>()
