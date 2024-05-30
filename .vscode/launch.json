@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/parthvirani/Desktop/image_overlay_rust/my_app/rust_builder/ios/Classes",
+      "program": "/Users/parthvirani/Desktop/image_overlay_rust/my_app/rust_builder/ios/Classes/build/Debug/outDebug"
+    }
+  ]
+}

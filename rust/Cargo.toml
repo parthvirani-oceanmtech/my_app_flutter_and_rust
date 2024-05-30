@@ -4,7 +4,17 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-crate-type = ["cdylib", "staticlib"]
+crate-type = ["lib", "cdylib", "staticlib"]
 
 [dependencies]
 flutter_rust_bridge = "=2.0.0-dev.36"
+anyhow = { version = "1.0.56", features = ["backtrace"] }
+photon-rs = { version = "^0.3.1", features = ["default", ] }
+image = "0.24.1"
+img-parts = "0.2.3"
+
+[profile.release]
+strip = true
+opt-level = 3
+codegen-units = 1
+panic = "abort"
