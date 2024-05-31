@@ -1,12 +1,15 @@
 // ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously, unused_local_variable
 
-import 'dart:io';
+import 'dart:developer';
 
 import 'package:flutter/material.dart' hide Transform;
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:my_app/src/rust/frb_generated.dart';
+import 'package:my_app/vips_rs.dart';
 
-void main() {
+Future<void> main() async {
+  await RustLib.init();
   runApp(const MyApp());
 }
 
@@ -60,50 +63,29 @@ class _MyAppState extends State<MyApp> {
         floatingActionButton: Builder(builder: (context) {
           return FloatingActionButton(
             onPressed: () async {
-              final watermark = await rootBundle.load('assets/images/watermark.png');
-              final blendImage = await rootBundle.load('assets/images/blend.jpg');
+              final watermark =
+                  await rootBundle.load('assets/images/watermark.png');
+              final blendImage =
+                  await rootBundle.load('assets/images/blend.jpg');
 
-              Uint8List? imageBytes;
-              if (Platform.isAndroid) {
-                final picker = ImagePicker();
-                final image = await picker.pickImage(source: ImageSource.gallery);
+              final stopwatch = Stopwatch()..start();
 
-                imageBytes = await image?.readAsBytes();
-              } else {
-                final blendImage = await rootBundle.load('images/blend.jpg');
-                imageBytes = Uint8List.view(
-                  blendImage.buffer,
-                  blendImage.offsetInBytes,
-                  blendImage.lengthInBytes,
-                );
-              }
+              final bytes = await overlayImageWithWatermark(
+                input: ImageOverlayInput(
+                  inputImage: blendImage.buffer.asUint8List(),
+                  overlayImage: watermark.buffer.asUint8List(),
+                  overlayHeight: 200,
+                  overlayWidth: 200,
+                  x: 20,
+                  y: 20,
+                ),
+              );
 
-              // if (imageBytes != null) {
-              //   originalImage.value = imageBytes;
+              print(bytes);
 
-              //   final stopwatch = Stopwatch()..start();
-              //   final codec = await instantiateImageCodec(
-              //     imageBytes,
-              //     targetWidth: MediaQuery.of(context).size.width.toInt() * View.of(context).devicePixelRatio.ceil(),
-              //   );
-              //   final frameInfo = await codec.getNextFrame();
-              //   final uiImage = frameInfo.image;
-              //   // ----------
-
-              //   // Convert to List<int>
-              //   // ----------
-              //   final resizedByteData = await uiImage.toByteData(
-              //     format: ImageByteFormat.png,
-              //   ) as ByteData;
-              //   final resizedUint8List =
-              //       resizedByteData.buffer.asUint8List(resizedByteData.offsetInBytes, resizedByteData.lengthInBytes);
-              //   resizedImage.value = resizedUint8List;
-              //   log("Resize Image: ${stopwatch.elapsedMilliseconds}ms");
-
-              //   setState(() {});
-              //   log(originalImage.value?.length.toString() ?? '');
-              //   log(resizedImage.value?.length.toString() ?? '');
-              // }
+              // final data = await ImageGallerySaver.saveImage(bytes);
+              log("Resize Image: ${stopwatch.elapsedMilliseconds}ms");
+              setState(() {});
             },
             child: const Icon(Icons.image),
           );
