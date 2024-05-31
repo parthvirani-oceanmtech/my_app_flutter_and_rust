@@ -704,10 +704,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "libvips"
-version = "1.7.0"
+name = "libvips-rs"
+version = "8.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "33890b93365ac05b5e6063d41bc014a1598087db4a0b9f75eddaa7dad0f7fc2a"
+checksum = "02ff89279a2b9fab3cf9c5edb523ffa1fbccf8ef2397b52b75b5461c21a8cf1a"
 dependencies = [
  "num-derive",
  "num-traits",
@@ -1128,7 +1128,7 @@ dependencies = [
  "flutter_rust_bridge",
  "image",
  "img-parts",
- "libvips",
+ "libvips-rs",
 ]
 
 [[package]]

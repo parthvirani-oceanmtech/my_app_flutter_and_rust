@@ -1,7 +1,7 @@
 // extern crate vips_rs;
 
 use anyhow::Result;
-use libvips::{ops, VipsApp, VipsImage};
+use libvips_rs::{ops, VipsApp, VipsImage};
 
 pub struct ImageOverlayInput {
     pub input_image: Vec<u8>,

@@ -18,52 +18,52 @@ class Target {
   });
 
   static final all = [
-    Target(
-      rust: 'armv7-linux-androideabi',
-      flutter: 'android-arm',
-      android: 'armeabi-v7a',
-      androidMinSdkVersion: 16,
-    ),
+    // Target(
+    //   rust: 'armv7-linux-androideabi',
+    //   flutter: 'android-arm',
+    //   android: 'armeabi-v7a',
+    //   androidMinSdkVersion: 16,
+    // ),
     Target(
       rust: 'aarch64-linux-android',
       flutter: 'android-arm64',
       android: 'arm64-v8a',
       androidMinSdkVersion: 21,
     ),
-    Target(
-      rust: 'i686-linux-android',
-      flutter: 'android-x86',
-      android: 'x86',
-      androidMinSdkVersion: 16,
-    ),
-    Target(
-      rust: 'x86_64-linux-android',
-      flutter: 'android-x64',
-      android: 'x86_64',
-      androidMinSdkVersion: 21,
-    ),
-    Target(
-      rust: 'x86_64-pc-windows-msvc',
-      flutter: 'windows-x64',
-    ),
-    Target(
-      rust: 'x86_64-unknown-linux-gnu',
-      flutter: 'linux-x64',
-    ),
-    Target(
-      rust: 'aarch64-unknown-linux-gnu',
-      flutter: 'linux-arm64',
-    ),
-    Target(
-      rust: 'x86_64-apple-darwin',
-      darwinPlatform: 'macosx',
-      darwinArch: 'x86_64',
-    ),
-    Target(
-      rust: 'aarch64-apple-darwin',
-      darwinPlatform: 'macosx',
-      darwinArch: 'arm64',
-    ),
+    // Target(
+    //   rust: 'i686-linux-android',
+    //   flutter: 'android-x86',
+    //   android: 'x86',
+    //   androidMinSdkVersion: 16,
+    // ),
+    // Target(
+    //   rust: 'x86_64-linux-android',
+    //   flutter: 'android-x64',
+    //   android: 'x86_64',
+    //   androidMinSdkVersion: 21,
+    // ),
+    // Target(
+    //   rust: 'x86_64-pc-windows-msvc',
+    //   flutter: 'windows-x64',
+    // ),
+    // Target(
+    //   rust: 'x86_64-unknown-linux-gnu',
+    //   flutter: 'linux-x64',
+    // ),
+    // Target(
+    //   rust: 'aarch64-unknown-linux-gnu',
+    //   flutter: 'linux-arm64',
+    // ),
+    // Target(
+    //   rust: 'x86_64-apple-darwin',
+    //   darwinPlatform: 'macosx',
+    //   darwinArch: 'x86_64',
+    // ),
+    // Target(
+    //   rust: 'aarch64-apple-darwin',
+    //   darwinPlatform: 'macosx',
+    //   darwinArch: 'arm64',
+    // ),
     Target(
       rust: 'aarch64-apple-ios',
       darwinPlatform: 'iphoneos',
@@ -74,11 +74,11 @@ class Target {
       darwinPlatform: 'iphonesimulator',
       darwinArch: 'arm64',
     ),
-    Target(
-      rust: 'x86_64-apple-ios',
-      darwinPlatform: 'iphonesimulator',
-      darwinArch: 'x86_64',
-    ),
+    // Target(
+    //   rust: 'x86_64-apple-ios',
+    //   darwinPlatform: 'iphonesimulator',
+    //   darwinArch: 'x86_64',
+    // ),
   ];
 
   static Target? forFlutterName(String flutterName) {
@@ -90,8 +90,7 @@ class Target {
     required String darwinAarch,
   }) {
     return all.firstWhereOrNull((element) => //
-        element.darwinPlatform == platformName &&
-        element.darwinArch == darwinAarch);
+        element.darwinPlatform == platformName && element.darwinArch == darwinAarch);
   }
 
   static Target? forRustTriple(String triple) {
@@ -99,9 +98,7 @@ class Target {
   }
 
   static List<Target> androidTargets() {
-    return all
-        .where((element) => element.android != null)
-        .toList(growable: false);
+    return all.where((element) => element.android != null).toList(growable: false);
   }
 
   /// Returns buildable targets on current host platform ignoring Android targets.
