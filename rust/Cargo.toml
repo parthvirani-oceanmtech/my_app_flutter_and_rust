@@ -11,8 +11,9 @@ flutter_rust_bridge = "=2.0.0-dev.37"
 anyhow = { version = "1.0.86", features = ["backtrace"] }
 image = "0.25.1"
 img-parts = "0.3.0"
+image2 = "1.9.2"
 # libvips = "1.7.0"
-libvips-rs = "8.15.1"
+# libvips-rs = "8.15.1"
 
 [profile.release]
 strip = true

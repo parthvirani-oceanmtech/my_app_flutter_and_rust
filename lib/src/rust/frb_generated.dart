@@ -122,12 +122,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  int dco_decode_i_32(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as int;
-  }
-
-  @protected
   ImageOverlayInput dco_decode_image_overlay_input(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
@@ -136,10 +130,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     return ImageOverlayInput(
       inputImage: dco_decode_list_prim_u_8_strict(arr[0]),
       overlayImage: dco_decode_list_prim_u_8_strict(arr[1]),
-      overlayWidth: dco_decode_i_32(arr[2]),
-      overlayHeight: dco_decode_i_32(arr[3]),
-      x: dco_decode_i_32(arr[4]),
-      y: dco_decode_i_32(arr[5]),
+      overlayWidth: dco_decode_u_32(arr[2]),
+      overlayHeight: dco_decode_u_32(arr[3]),
+      x: dco_decode_u_32(arr[4]),
+      y: dco_decode_u_32(arr[5]),
     );
   }
 
@@ -147,6 +141,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as Uint8List;
+  }
+
+  @protected
+  int dco_decode_u_32(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as int;
   }
 
   @protected
@@ -177,21 +177,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  int sse_decode_i_32(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getInt32();
-  }
-
-  @protected
   ImageOverlayInput sse_decode_image_overlay_input(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_inputImage = sse_decode_list_prim_u_8_strict(deserializer);
     var var_overlayImage = sse_decode_list_prim_u_8_strict(deserializer);
-    var var_overlayWidth = sse_decode_i_32(deserializer);
-    var var_overlayHeight = sse_decode_i_32(deserializer);
-    var var_x = sse_decode_i_32(deserializer);
-    var var_y = sse_decode_i_32(deserializer);
+    var var_overlayWidth = sse_decode_u_32(deserializer);
+    var var_overlayHeight = sse_decode_u_32(deserializer);
+    var var_x = sse_decode_u_32(deserializer);
+    var var_y = sse_decode_u_32(deserializer);
     return ImageOverlayInput(
         inputImage: var_inputImage,
         overlayImage: var_overlayImage,
@@ -209,9 +203,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  int sse_decode_u_32(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getUint32();
+  }
+
+  @protected
   int sse_decode_u_8(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getUint8();
+  }
+
+  @protected
+  int sse_decode_i_32(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getInt32();
   }
 
   @protected
@@ -241,21 +247,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_i_32(int self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putInt32(self);
-  }
-
-  @protected
   void sse_encode_image_overlay_input(
       ImageOverlayInput self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_list_prim_u_8_strict(self.inputImage, serializer);
     sse_encode_list_prim_u_8_strict(self.overlayImage, serializer);
-    sse_encode_i_32(self.overlayWidth, serializer);
-    sse_encode_i_32(self.overlayHeight, serializer);
-    sse_encode_i_32(self.x, serializer);
-    sse_encode_i_32(self.y, serializer);
+    sse_encode_u_32(self.overlayWidth, serializer);
+    sse_encode_u_32(self.overlayHeight, serializer);
+    sse_encode_u_32(self.x, serializer);
+    sse_encode_u_32(self.y, serializer);
   }
 
   @protected
@@ -267,9 +267,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_u_32(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putUint32(self);
+  }
+
+  @protected
   void sse_encode_u_8(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putUint8(self);
+  }
+
+  @protected
+  void sse_encode_i_32(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putInt32(self);
   }
 
   @protected

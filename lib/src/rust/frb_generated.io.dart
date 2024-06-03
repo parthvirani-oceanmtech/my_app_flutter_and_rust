@@ -28,13 +28,13 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   ImageOverlayInput dco_decode_box_autoadd_image_overlay_input(dynamic raw);
 
   @protected
-  int dco_decode_i_32(dynamic raw);
-
-  @protected
   ImageOverlayInput dco_decode_image_overlay_input(dynamic raw);
 
   @protected
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
+
+  @protected
+  int dco_decode_u_32(dynamic raw);
 
   @protected
   int dco_decode_u_8(dynamic raw);
@@ -50,9 +50,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       SseDeserializer deserializer);
 
   @protected
-  int sse_decode_i_32(SseDeserializer deserializer);
-
-  @protected
   ImageOverlayInput sse_decode_image_overlay_input(
       SseDeserializer deserializer);
 
@@ -60,7 +57,13 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
 
   @protected
+  int sse_decode_u_32(SseDeserializer deserializer);
+
+  @protected
   int sse_decode_u_8(SseDeserializer deserializer);
+
+  @protected
+  int sse_decode_i_32(SseDeserializer deserializer);
 
   @protected
   bool sse_decode_bool(SseDeserializer deserializer);
@@ -77,9 +80,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       ImageOverlayInput self, SseSerializer serializer);
 
   @protected
-  void sse_encode_i_32(int self, SseSerializer serializer);
-
-  @protected
   void sse_encode_image_overlay_input(
       ImageOverlayInput self, SseSerializer serializer);
 
@@ -88,7 +88,13 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       Uint8List self, SseSerializer serializer);
 
   @protected
+  void sse_encode_u_32(int self, SseSerializer serializer);
+
+  @protected
   void sse_encode_u_8(int self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_i_32(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_bool(bool self, SseSerializer serializer);

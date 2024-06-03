@@ -6,6 +6,8 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
+// The functions `overlay` are not `pub`, thus are ignored.
+
 Future<Uint8List> overlayImageWithWatermark(
         {required ImageOverlayInput input}) =>
     RustLib.instance.api.crateApiVipsApiOverlayImageWithWatermark(input: input);

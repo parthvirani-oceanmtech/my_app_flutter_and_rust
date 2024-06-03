@@ -93,22 +93,15 @@ impl SseDecode for String {
     }
 }
 
-impl SseDecode for i32 {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
-    }
-}
-
 impl SseDecode for crate::api::vips_api::ImageOverlayInput {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut var_inputImage = <Vec<u8>>::sse_decode(deserializer);
         let mut var_overlayImage = <Vec<u8>>::sse_decode(deserializer);
-        let mut var_overlayWidth = <i32>::sse_decode(deserializer);
-        let mut var_overlayHeight = <i32>::sse_decode(deserializer);
-        let mut var_x = <i32>::sse_decode(deserializer);
-        let mut var_y = <i32>::sse_decode(deserializer);
+        let mut var_overlayWidth = <u32>::sse_decode(deserializer);
+        let mut var_overlayHeight = <u32>::sse_decode(deserializer);
+        let mut var_x = <u32>::sse_decode(deserializer);
+        let mut var_y = <u32>::sse_decode(deserializer);
         return crate::api::vips_api::ImageOverlayInput {
             input_image: var_inputImage,
             overlay_image: var_overlayImage,
@@ -132,10 +125,24 @@ impl SseDecode for Vec<u8> {
     }
 }
 
+impl SseDecode for u32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_u32::<NativeEndian>().unwrap()
+    }
+}
+
 impl SseDecode for u8 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         deserializer.cursor.read_u8().unwrap()
+    }
+}
+
+impl SseDecode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
     }
 }
 
@@ -219,22 +226,15 @@ impl SseEncode for String {
     }
 }
 
-impl SseEncode for i32 {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
-    }
-}
-
 impl SseEncode for crate::api::vips_api::ImageOverlayInput {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <Vec<u8>>::sse_encode(self.input_image, serializer);
         <Vec<u8>>::sse_encode(self.overlay_image, serializer);
-        <i32>::sse_encode(self.overlay_width, serializer);
-        <i32>::sse_encode(self.overlay_height, serializer);
-        <i32>::sse_encode(self.x, serializer);
-        <i32>::sse_encode(self.y, serializer);
+        <u32>::sse_encode(self.overlay_width, serializer);
+        <u32>::sse_encode(self.overlay_height, serializer);
+        <u32>::sse_encode(self.x, serializer);
+        <u32>::sse_encode(self.y, serializer);
     }
 }
 
@@ -248,10 +248,24 @@ impl SseEncode for Vec<u8> {
     }
 }
 
+impl SseEncode for u32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_u32::<NativeEndian>(self).unwrap();
+    }
+}
+
 impl SseEncode for u8 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         serializer.cursor.write_u8(self).unwrap();
+    }
+}
+
+impl SseEncode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
     }
 }
 
