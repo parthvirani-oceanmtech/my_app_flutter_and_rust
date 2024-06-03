@@ -63,10 +63,8 @@ class _MyAppState extends State<MyApp> {
         floatingActionButton: Builder(builder: (context) {
           return FloatingActionButton(
             onPressed: () async {
-              final watermark =
-                  await rootBundle.load('assets/images/watermark.png');
-              final blendImage =
-                  await rootBundle.load('assets/images/blend.jpg');
+              final watermark = await rootBundle.load('assets/images/watermark.png');
+              final blendImage = await rootBundle.load('assets/images/blend.jpg');
 
               final stopwatch = Stopwatch()..start();
 
